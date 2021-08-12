@@ -1,0 +1,22 @@
+<div class="container h-100">
+    <div class="d-flex h-100 text-center align-items-center">
+      <div class="w-100 text-white">
+      <% byebug %>
+        <h1 class="display-3"><%= @post.category&.name %>: <%= @post.title %></h1>
+        <p class="lead mb-0">- <%= @post.users_id %></p>
+      </div>
+    </div>
+  </div>
+
+<section class="my-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <p><%= @post.content %></p>
+        <p class="mb-0">
+          Tag: <%= @post.tag %>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

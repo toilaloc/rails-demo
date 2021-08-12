@@ -1,0 +1,8 @@
+<h1>This is index</h1>
+<% flash.each do |key, value| %>
+    <div class="row">
+      <div class="alert alert-<%= key %>">
+        <%= value %>
+      </div>
+    </div>
+  <% end %>
