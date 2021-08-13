@@ -10,6 +10,7 @@ class Admin::CategoriesController < ApplicationController
 
     def create
       @category = Category.new category_params
+      @categories_parent = Category.select("id, name")
       if @category.save
         flash[:message] = "Created category success"
         redirect_to admin_categories_path

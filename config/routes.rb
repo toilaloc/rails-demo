@@ -20,8 +20,12 @@ Rails.application.routes.draw do
     resources :users
     resources :categories
     resources :posts
+    resources :comments
   end
 
   #### client route #### 
-  get "posts/:id" => "client/posts#show", as: 'show'
+  get "posts/:id" => "client/posts#show", as: 'show_post'
+  get "categories/:id" => "client/categories#show", as: 'show_category'
+  post "comments" => "client/comments#create", as: "client_comments"
+  delete "comments/:id" => "client/comments#destroy", as: 'client_comments_destroy'
 end

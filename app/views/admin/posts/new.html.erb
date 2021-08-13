@@ -13,7 +13,7 @@
       </div>
     <div class="form-group">
     <%= f.label :categories %>
-    <%= f.select :categories_id, @categories.collect {|c| [ c.name, c.id ] } %>
+    <%= f.select :category_id, @categories.collect {|c| [ c.name, c.id ] } %>
     </div>
     <%= f.submit "Submit", class: "btn btn-primary" %>
   <% end %>

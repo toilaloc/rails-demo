@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_150759) do
+ActiveRecord::Schema.define(version: 2021_08_13_021013) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name"
@@ -24,16 +24,24 @@ ActiveRecord::Schema.define(version: 2021_08_12_150759) do
     t.index ["id_id"], name: "index_categories_on_id_id"
   end
 
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.text "content"
+    t.bigint "post_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "tag"
-    t.bigint "users_id"
-    t.bigint "categories_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["categories_id"], name: "index_posts_on_categories_id"
-    t.index ["users_id"], name: "index_posts_on_users_id"
+    t.bigint "user_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -48,6 +56,8 @@ ActiveRecord::Schema.define(version: 2021_08_12_150759) do
     t.integer "role_id"
   end
 
-  add_foreign_key "posts", "categories", column: "categories_id"
-  add_foreign_key "posts", "users", column: "users_id"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "users"
 end

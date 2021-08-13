@@ -1,8 +1,12 @@
+<%= link_to "New", new_admin_post_path, class: "btn btn-primary"%>
 <table class="table">
   <thead>
     <tr>
       <th>Title</th>
       <th>Content</th>
+      <th>Category</th>
+      <th>Author</th>
+      <th>Tag</th>
     </tr>
   </thead>
 
@@ -12,15 +16,18 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
-        <td><%= link_to "Show", [:admin, post], class: "btn btn-success" %></td>
+        <td><%= post.category.name %></td>
+        <td><%= post.user.fullname %></td>
+        <td><%= post.tag %></td>
+        <td><%= link_to "Show", show_post_path(post), class: "btn btn-success" %></td>
       <td><%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-primary"%></td>
       <td><%= link_to "Destroy", [:admin, post], method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
       </tr>
+    <% end %>
     <% else %>
     <tr>
       <td><%= "No post" %></td>
     </tr>
-    <% end %>
     <% end %>
   </tbody>
 </table>

@@ -4,21 +4,20 @@ Hello, <%= session[:fullname] %>
 <% else %>
 You're not login!!
 <% end %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Fullname</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.username %></td>
-        <td><%= user.fullname %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card text-center">
+  <div class="card-header">
+    New Posts
+  </div>
+  <div class="row">
+  <%  @posts.each do |post| %>
+  <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= post.title %></h5>
+    <p class="card-text"><%= post.content %></p>
+    <%= link_to "View", show_post_path(post), class: "btn btn-primary"%>
+  </div>
+  </div>
+  <% end %>
+  </div>
+</div>

@@ -1,13 +1,12 @@
 <div class="container h-100">
     <div class="d-flex h-100 text-center align-items-center">
       <div class="w-100 text-white">
-      <% byebug %>
         <h1 class="display-3"><%= @post.category&.name %>: <%= @post.title %></h1>
-        <p class="lead mb-0">- <%= @post.users_id %></p>
+        <p class="lead mb-0">- <%= @post.user.fullname %></p>
       </div>
     </div>
   </div>
-
+<%= @category %>
 <section class="my-5">
   <div class="container">
     <div class="row">
@@ -20,3 +19,26 @@
     </div>
   </div>
 </section>
+
+<% if session[:user_id].present? %>
+<%= form_for [:client, @comment], html: {class: "form"}  do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_field :content, class: "form-control", placeholder: "Category Name" %>
+    <%= f.hidden_field :post_id, :value => @post.id %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+<% end %>
+
+<h2>List comment:</h2>
+<ul class="list-group">
+  <% @comments.each do |comment| %>
+  <li class="list-group-item">
+  <%= comment.content %> - <%= comment.user.fullname %>
+  <% if session[:user_id] == comment.user_id %>
+  <%= link_to "Delete", client_comments_destroy_path(comment), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  <% end %>
+  </li>
+  <% end %>
+</ul>

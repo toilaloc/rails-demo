@@ -54,7 +54,7 @@ class Admin::PostsController < ApplicationController
 
     private
     def post_params
-        defaults = { users_id: 1 }
-        params.require(:post).permit(:title, :content, :tag, :users_id, :categories_id).reverse_merge(defaults)
+        defaults = { user_id: session[:user_id] }
+        params.require(:post).permit(:title, :content, :tag, :user_id, :category_id).reverse_merge(defaults)
     end
 end
