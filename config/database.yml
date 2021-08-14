@@ -6,9 +6,11 @@
 #
 default: &default
   adapter: mysql2
-  host: <%= ENV['DB_HOST'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   encoding: utf8
-  pool: 5
+  reconnect: true
+  host: 127.0.0.1
+  port: 3306
   username: root
   password: Matkhau@123
 
