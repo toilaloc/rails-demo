@@ -6,12 +6,12 @@
 #
 default: &default
   adapter: mysql2
-  host: 127.0.0.1
+  host: <%= ENV['DB_HOST'] %>
   encoding: utf8
   pool: 5
   username: root
   password: Matkhau@123
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /var/run/mysqld/mysql.sock
 
 development:
   <<: *default
