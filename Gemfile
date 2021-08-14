@@ -10,7 +10,7 @@ gem 'rails', '~> 5.2.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-#gem 'mysql2', '~> 0.5.2'
+gem 'mysql2', '~> 0.5.2'
 # Use mysql for database
 gem "bcrypt"
 # Use bcrypt for password
@@ -70,6 +70,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'mysql2', '~> 0.5.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
